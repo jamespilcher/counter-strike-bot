@@ -8,7 +8,13 @@ const getAttackNameFromFile = require("./helpers/getAttackNameFromFile");
 const getKillWord = require("./helpers/getKillWord");
 const getRandomFileFromFolder = require("./helpers/getRandomFileFromFolder");
 
-const { cs_help_folder, cs_death_folder, cs_attack_gun_folder, cs_attack_other_folder, cs_dink_folder } = require("./helpers/soundFolderConstants");
+const {
+    cs_help_folder,
+    cs_death_folder,
+    cs_attack_gun_folder,
+    cs_attack_other_folder,
+    cs_dink_folder,
+} = require("./helpers/soundFolderConstants");
 
 let isCommandRunning = false;
 const busyMessages = [
@@ -33,7 +39,6 @@ module.exports = {
         }
         await interaction.deferReply();
         isCommandRunning = true;
-
 
         const help_file = getRandomFileFromFolder(cs_help_folder);
         const death_file = getRandomFileFromFolder(cs_death_folder);

@@ -3,7 +3,11 @@ const joinAndPlaySound = require("./helpers/joinAndPlaySound");
 const getRandomFileFromFolder = require("./helpers/getRandomFileFromFolder");
 const { exec } = require("child_process");
 
-const { cs_death_folder, cs_cheer_folder, cs_explode_folder } = require("./helpers/soundFolderConstants");
+const {
+    cs_death_folder,
+    cs_cheer_folder,
+    cs_explode_folder,
+} = require("./helpers/soundFolderConstants");
 
 let isCommandRunning = false;
 const bust_words = [
@@ -55,7 +59,7 @@ module.exports = {
         }
 
         command = `ffmpeg -i "${pre_death_file}" -i "${death_file}" -filter_complex "[1:a]adelay=500|500[delayed];[0:a][delayed]concat=n=2:v=0:a=1[outa]" -map "[outa]" "${output_file}"`; // Mix the audio files into one
-        
+
         await new Promise((resolve, reject) => {
             exec(command, (error, stdout, stderr) => {
                 if (error) {

@@ -21,5 +21,5 @@ module.exports = {
     cs_help_folder,
     cs_game_announcer_folder,
     cs_funny_folder,
-    cs_voice_comms_folder
+    cs_voice_comms_folder,
 };
