@@ -77,7 +77,6 @@ module.exports = {
 
         exec(`rm ${output_file}`);
 
-
         isCommandRunning = false;
     },
 };
