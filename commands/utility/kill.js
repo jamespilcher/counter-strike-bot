@@ -40,7 +40,7 @@ module.exports = {
 			const death_file = getRandomFileFromFolder(cs_death_folder);
 			var command = ""
 			var weapon_name = ""
-			const output_file = './mixed_sound.mp3';
+            const output_file = `./kill_sound_${new Date().getTime()}.mp3`;
 			if (Math.random() < 0.5) {
 				const gun_attack_file = getRandomFileFromFolder(cs_attack_gun_folder);
 				weapon_name = getAttackNameFromFile(gun_attack_file)
@@ -55,21 +55,20 @@ module.exports = {
 
 
             // Mix the audio files into one
-			exec(command, (error, stdout, stderr) => {
-                if (error) {
-                    console.log(`error: ${error.message}`);
-                    return;
-                }
-                if (stderr) {
-                    console.log(`stderr: ${stderr}`);
-                    return;
-                }
-
-                // Play the mixed sound
+            await new Promise((resolve, reject) => {
+                exec(command, (error, stdout, stderr) => {
+                    if (error) {
+                        console.log(`error: ${error.message}`);
+                        reject(error);
+                        return;
+                    }
+            
+                    resolve(stdout);
+                });
             });
 			await joinAndPlaySound(interaction, output_file);
 			// delete output file
-			exec('rm ./mixed_sound.mp3')
+			exec(`rm ${output_file}`)
 
 			// Bot was (getKillWord()) by (weapon_name)
 			await interaction.editReply(`Got ${getKillWord()} by ${weapon_name}.`);

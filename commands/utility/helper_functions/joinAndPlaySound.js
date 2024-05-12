@@ -21,7 +21,10 @@ async function joinAndPlaySound(interaction, sound_file) {
         });
     }
 
-    await entersState(connection, VoiceConnectionStatus.Ready, 5000); // 5 second timeout
+    if (connection.state.status !== VoiceConnectionStatus.Ready) {
+        console.log(`Waiting for connection to become ready...`)
+        await entersState(connection, VoiceConnectionStatus.Ready, 5000); // 5 second timeout
+    }
     const audioplayer = createAudioPlayer();
     connection.subscribe(audioplayer);
     const resource = createAudioResource(sound_file);
