@@ -33,10 +33,9 @@ module.exports = {
         ),
 
     async execute(interaction) {
-        await interaction.deferReply();
         const voice_line = interaction.options.getString("voice-line");
         const voice_file = `${cs_game_announcer_folder}/${voice_line}.mp3`;
+        await interaction.reply(voiceLineNames[voice_line]);
         await joinAndPlaySound(interaction, voice_file);
-        await interaction.editReply(voiceLineNames[voice_line]);
     },
 };

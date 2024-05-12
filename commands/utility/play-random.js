@@ -8,11 +8,8 @@ module.exports = {
         .setName("play-random")
         .setDescription("Plays a funny Counter-Strike sound."),
     async execute(interaction) {
-        await interaction.deferReply();
-
+        await interaction.reply(`Random sound!`);
         const sound_file = getRandomFileFromFolder(cs_funny_folder);
-
         await joinAndPlaySound(interaction, sound_file);
-        await interaction.editReply(`Random sound!`);
     },
 };

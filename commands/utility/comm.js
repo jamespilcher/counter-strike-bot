@@ -23,10 +23,9 @@ module.exports = {
         ),
 
     async execute(interaction) {
-        await interaction.deferReply();
         const voice_line = interaction.options.getString("voice-line");
         const voice_file = `${cs_voice_comms_folder}/${voice_line}.mp3`;
+        await interaction.reply(`Sector Clear!`);
         await joinAndPlaySound(interaction, voice_file);
-        await interaction.editReply(`Sector Clear!`);
     },
 };

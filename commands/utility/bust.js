@@ -45,7 +45,9 @@ module.exports = {
             );
             return;
         }
-        await interaction.deferReply();
+        await interaction.reply(
+            bust_words[Math.floor(Math.random() * bust_words.length)],
+        );
         isCommandRunning = true;
 
         const death_file = getRandomFileFromFolder(cs_death_folder);
@@ -75,9 +77,7 @@ module.exports = {
 
         exec(`rm ${output_file}`);
 
-        await interaction.editReply(
-            bust_words[Math.floor(Math.random() * bust_words.length)],
-        );
+
         isCommandRunning = false;
     },
 };
