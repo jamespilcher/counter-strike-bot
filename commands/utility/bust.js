@@ -58,6 +58,7 @@ module.exports = {
         }
 
         command = `ffmpeg -i "${pre_death_file}" -i "${death_file}" -filter_complex "[1:a]adelay=500|500[delayed];[0:a][delayed]concat=n=2:v=0:a=1[outa]" -map "[outa]" "${output_file}"`; // Mix the audio files into one
+        
         await new Promise((resolve, reject) => {
             exec(command, (error, stdout, stderr) => {
                 if (error) {
@@ -65,14 +66,12 @@ module.exports = {
                     reject(error);
                     return;
                 }
-
                 resolve(stdout);
             });
         });
 
         await joinAndPlaySound(interaction, output_file);
 
-        // delete output file
         exec(`rm ${output_file}`);
 
         await interaction.editReply(
