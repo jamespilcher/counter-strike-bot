@@ -19,6 +19,11 @@ const bust_words = [
     "Grrrrr...",
 ];
 
+const cs_kill_folder = "./cs-kill";
+const cs_death_folder = `${cs_kill_folder}/cs-death`;
+const cs_cheer_folder = `${cs_kill_folder}/cs-cheer`;
+const cs_explode_folder = `${cs_kill_folder}/cs-explode`;
+
 module.exports = {
     data: new SlashCommandBuilder()
         .setName("bust")
@@ -41,19 +46,14 @@ module.exports = {
         }
         await interaction.deferReply();
         isCommandRunning = true;
-        const cs_kill_folder = "./cs-kill";
-
-        const cs_death_folder = `${cs_kill_folder}/cs-death`;
 
         const death_file = getRandomFileFromFolder(cs_death_folder);
         const output_file = `./bust_sound_${new Date().getTime()}.mp3`;
 
         var pre_death_file = "";
         if (Math.random() < 0.5) {
-            const cs_cheer_folder = `${cs_kill_folder}/cs-cheer`;
             pre_death_file = getRandomFileFromFolder(cs_cheer_folder);
         } else {
-            const cs_explode_folder = `${cs_kill_folder}/cs-explode`;
             pre_death_file = getRandomFileFromFolder(cs_explode_folder);
         }
 
