@@ -1,5 +1,6 @@
 const { SlashCommandBuilder } = require("discord.js");
-const joinAndPlaySound = require("./helper_functions/joinAndPlaySound");
+const joinAndPlaySound = require("./helpers/joinAndPlaySound");
+const { cs_voice_comms_folder } = require("./helpers/soundFolderConstants");
 
 module.exports = {
     data: new SlashCommandBuilder()
@@ -23,7 +24,7 @@ module.exports = {
     async execute(interaction) {
         await interaction.deferReply();
         const voice_line = interaction.options.getString("voice-line");
-        const voice_file = `./cs-voice-comms/${voice_line}.mp3`;
+        const voice_file = `${cs_voice_comms_folder}/${voice_line}.mp3`;
         await joinAndPlaySound(interaction, voice_file);
         await interaction.editReply(`Sector Clear!`);
     },

@@ -1,6 +1,7 @@
 const { SlashCommandBuilder } = require("discord.js");
-const joinAndPlaySound = require("./helper_functions/joinAndPlaySound");
-const getRandomFileFromFolder = require("./helper_functions/getRandomFileFromFolder");
+const joinAndPlaySound = require("./helpers/joinAndPlaySound");
+const getRandomFileFromFolder = require("./helpers/getRandomFileFromFolder");
+const { cs_funny_folder } = require("./helpers/soundFolderConstants");
 
 module.exports = {
     data: new SlashCommandBuilder()
@@ -9,7 +10,7 @@ module.exports = {
     async execute(interaction) {
         await interaction.deferReply();
 
-        const sound_file = getRandomFileFromFolder("./cs-funny-sounds");
+        const sound_file = getRandomFileFromFolder(cs_funny_folder);
 
         await joinAndPlaySound(interaction, sound_file);
         await interaction.editReply(`Random sound!`);

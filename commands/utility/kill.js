@@ -3,16 +3,13 @@ const { SlashCommandBuilder } = require("discord.js");
 
 const { getVoiceConnection } = require("@discordjs/voice");
 
-const joinAndPlaySound = require("./helper_functions/joinAndPlaySound");
-const getAttackNameFromFile = require("./helper_functions/getAttackNameFromFile");
-const getKillWord = require("./helper_functions/getKillWord");
-const getRandomFileFromFolder = require("./helper_functions/getRandomFileFromFolder");
-const cs_kill_folder = "./cs-kill";
-const cs_attack_gun_folder = `${cs_kill_folder}/cs-attack-gun`;
-const cs_death_folder = `${cs_kill_folder}/cs-death`;
-const cs_attack_other_folder = `${cs_kill_folder}/cs-attack-other`;
-const cs_dink_folder = `${cs_kill_folder}/cs-dink`;
-const cs_help_folder = `${cs_kill_folder}/cs-help`;
+const joinAndPlaySound = require("./helpers/joinAndPlaySound");
+const getAttackNameFromFile = require("./helpers/getAttackNameFromFile");
+const getKillWord = require("./helpers/getKillWord");
+const getRandomFileFromFolder = require("./helpers/getRandomFileFromFolder");
+
+const { cs_help_folder, cs_death_folder, cs_attack_gun_folder, cs_attack_other_folder, cs_dink_folder } = require("./helpers/soundFolderConstants");
+
 let isCommandRunning = false;
 const busyMessages = [
     "I'm busy getting killed!",

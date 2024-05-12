@@ -1,5 +1,8 @@
 const { SlashCommandBuilder } = require("discord.js");
-const joinAndPlaySound = require("./helper_functions/joinAndPlaySound");
+const joinAndPlaySound = require("./helpers/joinAndPlaySound");
+const { cs_game_announcer_folder } = require("./helpers/soundFolderConstants");
+
+
 const voiceLineNames = {
     "bombdef": "Bomb has been defused.",
     "bombpl": "Bomb has been planted.",
@@ -35,7 +38,7 @@ module.exports = {
     async execute(interaction) {
         await interaction.deferReply();
         const voice_line = interaction.options.getString("voice-line");
-        const voice_file = `./cs-game-announcer/${voice_line}.mp3`;
+        const voice_file = `${cs_game_announcer_folder}/${voice_line}.mp3`;
         await joinAndPlaySound(interaction, voice_file);
         await interaction.editReply(voiceLineNames[voice_line]);
     },

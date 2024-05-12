@@ -1,7 +1,9 @@
 const { SlashCommandBuilder } = require("discord.js");
-const joinAndPlaySound = require("./helper_functions/joinAndPlaySound");
-const getRandomFileFromFolder = require("./helper_functions/getRandomFileFromFolder");
+const joinAndPlaySound = require("./helpers/joinAndPlaySound");
+const getRandomFileFromFolder = require("./helpers/getRandomFileFromFolder");
 const { exec } = require("child_process");
+
+const { cs_death_folder, cs_cheer_folder, cs_explode_folder } = require("./helpers/soundFolderConstants");
 
 let isCommandRunning = false;
 const bust_words = [
@@ -18,11 +20,6 @@ const bust_words = [
     ":3",
     "Grrrrr...",
 ];
-
-const cs_kill_folder = "./cs-kill";
-const cs_death_folder = `${cs_kill_folder}/cs-death`;
-const cs_cheer_folder = `${cs_kill_folder}/cs-cheer`;
-const cs_explode_folder = `${cs_kill_folder}/cs-explode`;
 
 module.exports = {
     data: new SlashCommandBuilder()
