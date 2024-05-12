@@ -42,8 +42,8 @@ npm install
 
 ~~[NGROK] Create a sign up and install your auth token~~
 
-- ~~Sign up for an account: https://dashboard.ngrok.com/signup~~
-- ~~Install your authtoken: https://dashboard.ngrok.com/get-started/your-authtoken~~
+-   ~~Sign up for an account: https://dashboard.ngrok.com/signup~~
+-   ~~Install your authtoken: https://dashboard.ngrok.com/get-started/your-authtoken~~
 
 Create `config.json` and place in root of directory. Get the tokens from Discord developer portal.
 

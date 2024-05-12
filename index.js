@@ -6,7 +6,7 @@ const { token } = require("./config.json");
 
 // Create a new client instance
 const client = new Client({
-  intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildVoiceStates],
+    intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildVoiceStates],
 });
 
 client.commands = new Collection();
@@ -16,55 +16,57 @@ const commandFolders = fs.readdirSync(foldersPath);
 
 // create a mapping of command name to commands (that are stored in their respective folders)
 for (const folder of commandFolders) {
-  const commandsPath = path.join(foldersPath, folder);
-  const commandFiles = fs
-    .readdirSync(commandsPath)
-    .filter((file) => file.endsWith(".js"));
-  for (const file of commandFiles) {
-    const filePath = path.join(commandsPath, file);
-    const command = require(filePath);
-    // Set a new item in the Collection with the key as the command name and the value as the exported module
-    if ("data" in command && "execute" in command) {
-      client.commands.set(command.data.name, command); // add new command to the bot
-    } else {
-      console.log(
-        `[WARNING] The command at ${filePath} is missing a required "data" or "execute" property.`,
-      );
+    const commandsPath = path.join(foldersPath, folder);
+    const commandFiles = fs
+        .readdirSync(commandsPath)
+        .filter((file) => file.endsWith(".js"));
+    for (const file of commandFiles) {
+        const filePath = path.join(commandsPath, file);
+        const command = require(filePath);
+        // Set a new item in the Collection with the key as the command name and the value as the exported module
+        if ("data" in command && "execute" in command) {
+            client.commands.set(command.data.name, command); // add new command to the bot
+        } else {
+            console.log(
+                `[WARNING] The command at ${filePath} is missing a required "data" or "execute" property.`,
+            );
+        }
     }
-  }
 }
 
 client.on(Events.InteractionCreate, async (interaction) => {
-  if (!interaction.isChatInputCommand()) return; // only handle slash commands
+    if (!interaction.isChatInputCommand()) return; // only handle slash commands
 
-  // input interaction command name must map to a command name in our dict
-  const command = interaction.client.commands.get(interaction.commandName);
-  if (!command) {
-    console.error(`No command matching ${interaction.commandName} was found.`);
-    return;
-  }
-
-  try {
-    await command.execute(interaction);
-  } catch (error) {
-    console.error(error);
-    if (interaction.replied || interaction.deferred) {
-      await interaction.followUp({
-        content: "There was an error while executing this command!",
-        ephemeral: true,
-      });
-    } else {
-      await interaction.reply({
-        content: "There was an error while executing this command!",
-        ephemeral: true,
-      });
+    // input interaction command name must map to a command name in our dict
+    const command = interaction.client.commands.get(interaction.commandName);
+    if (!command) {
+        console.error(
+            `No command matching ${interaction.commandName} was found.`,
+        );
+        return;
     }
-  }
+
+    try {
+        await command.execute(interaction);
+    } catch (error) {
+        console.error(error);
+        if (interaction.replied || interaction.deferred) {
+            await interaction.followUp({
+                content: "There was an error while executing this command!",
+                ephemeral: true,
+            });
+        } else {
+            await interaction.reply({
+                content: "There was an error while executing this command!",
+                ephemeral: true,
+            });
+        }
+    }
 });
 
 // When the client is ready, run this code (only once)
 client.once(Events.ClientReady, (readyClient) => {
-  console.log(`Ready! Logged in as ${readyClient.user.tag}`);
+    console.log(`Ready! Logged in as ${readyClient.user.tag}`);
 });
 
 // Log in to Discord with your client's token
