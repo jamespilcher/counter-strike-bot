@@ -28,8 +28,6 @@ npm install
 
 
 
-
-
 ~~[Install `ngrok` for local testing](https://ngrok.com/download)~~
 
 ~~via apt:~~
@@ -41,3 +39,13 @@ npm install
 - ~~Sign up for an account: https://dashboard.ngrok.com/signup~~
 - ~~Install your authtoken: https://dashboard.ngrok.com/get-started/your-authtoken~~
 
+
+Create `config.json` and place in root of directory. Get the tokens from Discord developer portal.
+
+```
+{
+	"token": <"APPLICATION_TOKEN">,
+	"clientId": <"DISCORD_APPLICATION_ID">,
+	"guildId": <"TEST_SERVER_ID">
+}
+```
