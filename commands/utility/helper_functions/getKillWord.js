@@ -1,4 +1,3 @@
-
 function getKillWord() {
     killWords = [
         "killed",

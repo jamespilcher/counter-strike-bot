@@ -1,8 +1,6 @@
-
 const { SlashCommandBuilder } = require('discord.js');
 const joinAndPlaySound = require('./helper_functions/joinAndPlaySound');
 const getRandomFileFromFolder = require('./helper_functions/getRandomFileFromFolder');
-
 
 module.exports = {
 	data: new SlashCommandBuilder()
@@ -14,7 +12,7 @@ module.exports = {
 			const sound_file = getRandomFileFromFolder('./cs-funny-sounds')
 			
 			await joinAndPlaySound(interaction, sound_file);
-			await interaction.editReply(`Sector Clear!`);
+			await interaction.editReply(`Random sound!`);
 
 		},
 	};

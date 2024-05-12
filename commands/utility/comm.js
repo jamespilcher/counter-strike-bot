@@ -1,8 +1,5 @@
-
 const { SlashCommandBuilder } = require('discord.js');
 const joinAndPlaySound = require('./helper_functions/joinAndPlaySound');
-
-
 
 module.exports = {
 	data: new SlashCommandBuilder()
@@ -14,8 +11,6 @@ module.exports = {
 				.setRequired(true)
 				.addChoices(
 					{ name: 'Sector Clear!', value: 'sector-clear' },
-					{ name: 'Meme', value: 'gif_meme' },
-					{ name: 'Movie', value: 'gif_movie' },
 				)),
 				
 		async execute(interaction) {

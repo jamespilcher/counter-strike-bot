@@ -1,10 +1,24 @@
-
 const { SlashCommandBuilder } = require('discord.js');
 const joinAndPlaySound = require('./helper_functions/joinAndPlaySound');
 const getRandomFileFromFolder = require('./helper_functions/getRandomFileFromFolder');
 const { exec } = require('child_process');
 
 let isCommandRunning = false;
+const bust_words = [
+    "Neughhh...",
+    "Bust!",
+    "Oh mama!",
+    "Awghhh...",
+    "Awoooga!",
+    "Oh no!",
+    "Oh yeah!",
+    "Boioioing!",
+    "Mmmmm...",
+    "Nnnnmmm...",
+    ":3",
+    "Grrrrr..."
+]
+
 module.exports = {
 	data: new SlashCommandBuilder()
 		.setName('bust')
@@ -60,21 +74,7 @@ module.exports = {
 			// delete output file
 			exec(`rm ${output_file}`)
 
-			// Bot was (getKillWord()) by (weapon_name)
-            var bust_words = [
-                "Neughhh...",
-                "Bust!",
-                "Oh mama!",
-                "Awghhh...",
-                "Awoooga!",
-                "Oh no!",
-                "Oh yeah!",
-                "Boioioing!",
-                "Mmmmm...",
-                "Nnnnmmm...",
-                ":3",
-                "Grrrrr..."
-            ]
+
 
             await interaction.editReply(bust_words[Math.floor(Math.random() * bust_words.length)]);
 			isCommandRunning = false;

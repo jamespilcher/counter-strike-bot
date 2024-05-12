@@ -1,4 +1,3 @@
-
 const weaponMap = new Map([
     ['ak47-1.mp3', 'AK-47'],
     ['awp1.mp3', 'AWP'],
@@ -13,7 +12,6 @@ const weaponMap = new Map([
 ]); 
 
 function getAttackNameFromFile(filePath) {
-    // take the file name from the path
     const fileName = filePath.split("/").pop();
 
     if (!weaponMap.has(fileName)) {
